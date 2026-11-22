@@ -34,7 +34,7 @@ def create_table():
 
     execute('''
         CREATE TABLE IF NOT EXISTS students(
-            id INTEGER AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name STRING,
             age INTEGER,
             major STRING
@@ -43,9 +43,18 @@ def create_table():
 
     execute('''
         CREATE TABLE IF NOT EXISTS courses(
-            course_id INTEGER AUTOINCREMENT,
+            course_id INTEGER PRIMARY KEY AUTOINCREMENT,
             course_name STRING,
             instructor STRING
+        )
+    ''')
+
+    execute('''
+        CREATE TABLE IF NOT EXISTS student_courses(
+            student_id INTEGER,
+            course_id INTEGER,
+            FOREIGN KEY (student_id) REFERENCES student(id),
+            FOREIGN KEY (course_id) REFERENCES course(course_id)
         )
     ''')
 
